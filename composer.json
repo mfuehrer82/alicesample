@@ -28,9 +28,7 @@
         "willdurand/hateoas-bundle": "^1.0",
         "hautelook/templated-uri-bundle": "^2.0",
         "willdurand/rest-extra-bundle": "^1.0",
-        "white-october/pagerfanta-bundle": "@stable"
-    },
-    "require-dev": {
+        "white-october/pagerfanta-bundle": "@stable",
         "mockery/mockery": "@stable",
         "jakoch/phantomjs-installer": "2.1.1",
         "codeception/codeception": "2.2.0-RC2",
