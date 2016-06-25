@@ -35,8 +35,8 @@
         "jakoch/phantomjs-installer": "2.1.1",
         "codeception/codeception": "2.2.0-RC2",
         "symfony/phpunit-bridge": "3.0.6",
-        "sensio/generator-bundle": "~2.3",
-        "hautelook/alice-bundle": "@stable"
+        "hautelook/alice-bundle": "@stable",
+        "sstalle/php7cc": "^1.1"
     },
     "scripts": {
         "post-install-cmd": [
