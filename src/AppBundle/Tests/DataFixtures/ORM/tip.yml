@@ -1,0 +1,5 @@
+AppBundle\Entity\Tip:
+    tip_{1..20}:
+        day: <numberBetween(1, 31)>
+        month: <numberBetween(1, 12)>
+        description: <sentence($nbWords = 3, $variableNbWords = true)>

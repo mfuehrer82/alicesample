@@ -1,0 +1,6 @@
+services:
+
+  app.controller.action_listener:
+      class: AppBundle\EventListener\ControllerListener
+      tags:
+          - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }

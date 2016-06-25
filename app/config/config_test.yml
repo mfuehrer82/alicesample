@@ -1,0 +1,26 @@
+imports:
+    - { resource: config_dev.yml }
+    - { resource: parameters_test.yml }
+
+doctrine:
+    dbal:
+        default_connection: sqlite
+        connections:
+            sqlite:
+                driver:  '%database_driver%'
+                memory:  false
+                path:    '%kernel.root_dir%/../web/'
+
+framework:
+    test: ~
+    session:
+        storage_id: session.storage.mock_file
+    profiler:
+        enabled: false
+
+web_profiler:
+    toolbar: false
+    intercept_redirects: false
+
+swiftmailer:
+    disable_delivery: true

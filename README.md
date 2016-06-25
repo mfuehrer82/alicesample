@@ -1,0 +1,4 @@
+SYMFONY REST EXAMPLE
+========================
+
+FORKED FROM SYMFONY REST EDITION

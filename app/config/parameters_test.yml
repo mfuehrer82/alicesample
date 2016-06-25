@@ -1,0 +1,8 @@
+parameters:
+
+    database_driver: pdo_sqlite
+    database_port: null
+    database_host: 127.0.0.1
+    database_name: tips
+    database_user: root
+    database_password:

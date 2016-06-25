@@ -1,0 +1,8 @@
+NelmioApiDocBundle:
+  resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+  prefix:   /api/doc
+
+tips:
+  type:     rest
+  resource: @AppBundle/Controller/TipController.php
+  prefix: api
