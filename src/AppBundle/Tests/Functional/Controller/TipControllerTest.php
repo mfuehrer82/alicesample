@@ -17,7 +17,7 @@ class TipControllerTest extends FixtureTestCase
      */
     public function testJsonPostTipActionFailed()
     {
-        $this->client->request(
+        self::$client->request(
             'POST',
             '/api/tips.json',
             [],
@@ -26,8 +26,8 @@ class TipControllerTest extends FixtureTestCase
             '{"tip": {"day":"3"}}'
         );
 
-        $this->assertEquals(400, $this->client->getResponse()->getStatusCode());
-        $this->assertEquals('23', strpos($this->client->getResponse()->getContent(), 'Validation Failed'));
+        $this->assertEquals(400, self::$client->getResponse()->getStatusCode());
+        $this->assertEquals('23', strpos(self::$client->getResponse()->getContent(), 'Validation Failed'));
     }
 
     /**
@@ -37,7 +37,7 @@ class TipControllerTest extends FixtureTestCase
     {
         $content = '{"day":3,"month":12,"description":"some tip"}';
 
-        $this->client->request(
+        self::$client->request(
             'POST',
             '/api/tips.json',
             [],
@@ -46,12 +46,12 @@ class TipControllerTest extends FixtureTestCase
             sprintf('{"tip": %s}', $content)
         );
 
-        $repsonse = $this->client->getResponse();
+        $repsonse = self::$client->getResponse();
 
         $this->assertEquals(200, $repsonse->getStatusCode());
         $this->assertEquals($content, $repsonse->getContent());
 
-        $this->client->request('GET', $repsonse->headers->get('Location'));
+        self::$client->request('GET', $repsonse->headers->get('Location'));
         $this->assertEquals($content, $repsonse->getContent());
     }
 
@@ -60,12 +60,12 @@ class TipControllerTest extends FixtureTestCase
      */
     public function testJsonNewTipAction()
     {
-        $this->client->request(
+        self::$client->request(
             'GET',
             '/api/tips/new'
         );
 
-        $response = $this->client->getResponse();
+        $response = self::$client->getResponse();
         $this->assertEquals(400, $response->getStatusCode());
         $this->assertEquals('{"children":{"day":{},"month":{},"description":{}}}', $response->getContent());
 
@@ -77,12 +77,12 @@ class TipControllerTest extends FixtureTestCase
      */
     public function testJsonDeleteTipAction()
     {
-        $this->client->request(
+        self::$client->request(
             'Delete',
             '/api/tips/3'
         );
 
-        $response = $this->client->getResponse();
+        $response = self::$client->getResponse();
         $this->assertEquals(204, $response->getStatusCode());
 
         return $response;
@@ -93,14 +93,14 @@ class TipControllerTest extends FixtureTestCase
      */
     public function testJsonGetTipAction()
     {
-        $content = '{"day":10,"month":10,"description":"Ratione eaque possimus quia optio."}';
+        $content = '{"day":18,"month":1,"description":"Recusandae asperiores accusamus nihil."}';
 
-        $this->client->request(
+        self::$client->request(
             'GET',
             '/api/tips/1.json'
         );
 
-        $response = $this->client->getResponse();
+        $response = self::$client->getResponse();
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertEquals($content, $response->getContent());
 
@@ -112,14 +112,14 @@ class TipControllerTest extends FixtureTestCase
      */
     public function testCGetAction()
     {
-        $this->client->request(
+        self::$client->request(
             'GET',
             '/api/tips?page=2'
         );
 
-        $response = $this->client->getResponse();
+        $response = self::$client->getResponse();
         $this->assertEquals(200, $response->getStatusCode());
-        $this->assertEquals('2', strpos($this->client->getResponse()->getContent(), '\"page\":2,'));
+        $this->assertEquals('2', strpos(self::$client->getResponse()->getContent(), '\"page\":2,'));
     }
 
     /**
@@ -132,7 +132,7 @@ class TipControllerTest extends FixtureTestCase
     {
         $content = str_replace('"day":10', '"day":5', $response->getContent());
 
-        $this->client->request(
+        self::$client->request(
             'POST',
             '/api/tips/1/update.json',
             [],
@@ -141,8 +141,8 @@ class TipControllerTest extends FixtureTestCase
             sprintf('{"tip": %s}', $content)
         );
 
-        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-        $this->assertEquals($content, $this->client->getResponse()->getContent());
+        $this->assertEquals(200, self::$client->getResponse()->getStatusCode());
+        $this->assertEquals($content, self::$client->getResponse()->getContent());
     }
 
     /**

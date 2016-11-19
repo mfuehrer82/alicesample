@@ -1,6 +1,7 @@
 /web/bundles/
 /app/cache/*
 /app/logs/*
+/app/bootstrap.php.cache
 /build/
 /vendor/
 /bin/

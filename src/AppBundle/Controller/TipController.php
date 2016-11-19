@@ -188,7 +188,7 @@ class TipController extends AbstractRestController
      */
     private function handleRequestAction(Request $request, Tip $tip)
     {
-        $form = $this->createForm(new TipType(), $tip);
+        $form = $this->createForm(TipType::class, $tip);
         $form->handleRequest($request);
 
         if (true === $form->isValid()) {

@@ -3,45 +3,58 @@
 namespace AppBundle\Tests;
 
 use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\Tools\SchemaTool;
 use Symfony\Bundle\FrameworkBundle\Client;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase as BaseWebTestCase;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Bundle\FrameworkBundle\Console\Application;
+use Symfony\Component\Console\Input\StringInput;
 
 /**
  * Class FixtureTestCase
  *
  * @package AppBundle\Tests
  */
-class FixtureTestCase extends BaseWebTestCase
+class FixtureTestCase extends WebTestCase
 {
+    /**
+     * @var Application
+     */
+    private static $application;
+
     /**
      * @var Client
      */
-    protected $client;
-
-    /**
-     * @var ContainerInterface
-     */
-    protected $container;
+    protected static $client;
 
     /**
      * @var EntityManager
      */
-    protected $em;
+    protected static $entityManager;
 
     /**
      * @return void
      */
-    protected function setUp()
+    public function setUp()
     {
         parent::setUp();
-
-        $this->client = static::createClient();
-        $this->container = $this->client->getContainer();
-        $this->em = $this->container->get('doctrine.orm.default_entity_manager');
-        $this->createSchema();
         $this->loadFixtures();
+    }
+
+    /**
+     * @return void
+     */
+    public static function setUpBeforeClass()
+    {
+        self::getApplication();
+        self::createSchema();
+
+    }
+
+    /**
+     * @return void
+     */
+    public static function  tearDownAfterClass()
+    {
+        self::runCommand('doctrine:database:drop --force');
     }
 
     /**
@@ -50,7 +63,7 @@ class FixtureTestCase extends BaseWebTestCase
      */
     protected function loadFixtures()
     {
-        \Nelmio\Alice\Fixtures::load($this->getDataFixtures(), $this->em);
+        \Nelmio\Alice\Fixtures::load($this->getDataFixtures(), self::$entityManager);
     }
 
     /**
@@ -64,12 +77,36 @@ class FixtureTestCase extends BaseWebTestCase
     /**
      * @throws \Doctrine\ORM\Tools\ToolsException
      */
-    private function createSchema()
+    private static function createSchema()
     {
-        $cmf = $this->em->getMetadataFactory();
-        $classes = $cmf->getAllMetadata();
+        self::runCommand('doctrine:database:create');
+        self::runCommand('doctrine:schema:update --force');
+    }
 
-        $schemaTool = new SchemaTool($this->em);
-        $schemaTool->createSchema($classes);
+    /**
+     * @param string $command
+     *
+     * @return int|mixed
+     */
+    private static function runCommand($command)
+    {
+        $command = sprintf('%s --quiet', $command);
+
+        return self::getApplication()->run(new StringInput($command));
+    }
+
+    /**
+     * @return Application
+     */
+    private static function getApplication()
+    {
+        if (null === self::$application) {
+            self::$client = static::createClient();
+            self::$entityManager = self::$client->getContainer()->get('doctrine.orm.default_entity_manager');
+            self::$application = new Application(self::$client->getKernel());
+            self::$application->setAutoExit(false);
+        }
+
+        return self::$application;
     }
 }
