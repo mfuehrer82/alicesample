@@ -9,9 +9,7 @@ security:
 
     providers:
         in_memory:
-            memory:
-                users:
-                    restapi:  { password: secretpw, roles: [ 'ROLE_API' ] }
+            memory: ~
 
     firewalls:
         dev:
@@ -21,6 +19,3 @@ security:
         main:
             pattern: ^/
             anonymous: ~
-            stateless:  true
-            http_basic:
-                realm: "Demo REST API (username: restapi, password: secretpw)"
