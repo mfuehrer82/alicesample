@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Form;
+namespace AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -8,7 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class TipType
- * @package AppBundle\Form
+ * @package AppBundle\Form\Type
  */
 class TipType extends AbstractType
 {

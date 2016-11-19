@@ -3,7 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Tip;
-use AppBundle\Form\TipType;
+use AppBundle\Form\Type\TipType;
 use FOS\RestBundle\Controller\Annotations as FOSRest;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Sensio;
 use Nelmio\ApiDocBundle\Annotation as Nelmio;

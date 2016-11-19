@@ -24,4 +24,20 @@ abstract class Base
      * @Gedmo\Timestampable(on="update")
      */
     private $updated;
+
+    /**
+     * @return mixed
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUpdated()
+    {
+        return $this->updated;
+    }
 }
