@@ -1,7 +1,7 @@
 language: php
 
 php:
-  - 7.0
+  - 7.0.8
 
 sudo: false
 
@@ -9,13 +9,9 @@ cache:
   directories:
     - $HOME/.composer/cache
 
-matrix:
-  include:
-    php: 7.0
-
 before_script:
-  - travis_retry composer self-update
-  - travis_retry composer update --no-interaction --prefer-dist
+  - composer self-update
+  - composer update --no-interaction --prefer-dist
 
 script:
   - mkdir -p build/logs
