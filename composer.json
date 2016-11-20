@@ -33,6 +33,7 @@
         "tm/tooly-composer-script": "^1.2"
     },
     "require-dev": {
+        "heroku/heroku-buildpack-php": "*",
         "mockery/mockery": "@stable",
         "sstalle/php7cc": "^1.1"
     },
