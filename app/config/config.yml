@@ -29,10 +29,13 @@ twig:
 
 monolog:
   handlers:
-    nested:
-      type: syslog
+    filter_for_errors:
+      type: fingers_crossed
       action_level: debug
-      path: "php://stderr"
+      handler: file_log
+    file_log:
+      type: stream
+      path: "%kernel.logs_dir%/%kernel.environment%.log"
 
 # Assetic Configuration
 assetic:
