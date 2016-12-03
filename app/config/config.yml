@@ -27,16 +27,6 @@ twig:
   strict_variables: '%kernel.debug%'
   exception_controller: 'FOS\RestBundle\Controller\ExceptionController::showAction'
 
-monolog:
-  handlers:
-    filter_for_errors:
-      type: fingers_crossed
-      action_level: debug
-      handler: file_log
-    file_log:
-      type: stream
-      path: "%kernel.logs_dir%/%kernel.environment%.log"
-
 # Assetic Configuration
 assetic:
   debug:          '%kernel.debug%'
