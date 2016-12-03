@@ -27,6 +27,12 @@ twig:
   strict_variables: '%kernel.debug%'
   exception_controller: 'FOS\RestBundle\Controller\ExceptionController::showAction'
 
+monolog:
+  handlers:
+    nested:
+      type: syslog
+      path: "php://stderr"
+
 # Assetic Configuration
 assetic:
   debug:          '%kernel.debug%'
