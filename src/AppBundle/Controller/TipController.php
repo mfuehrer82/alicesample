@@ -88,7 +88,7 @@ class TipController extends AbstractRestController
         $representation = $this->createRepresentation($request, $queryBuilder);
         $content = $this->get('serializer')->serialize($representation, $request->getRequestFormat());
 
-        return $this->handleView($this->view($content));
+        return new Response($content, Response::HTTP_OK, ['Content-Type' => 'application/hal+json']);
     }
 
     /**
@@ -191,7 +191,7 @@ class TipController extends AbstractRestController
         $form = $this->createForm(TipType::class, $tip);
         $form->handleRequest($request);
 
-        if (true === $form->isSubmitted() && $form->isValid()) {
+        if (true === $form->isSubmitted() and $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($tip);
             $em->flush();

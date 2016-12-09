@@ -7,7 +7,7 @@
         "psr-4": { "": "src/" }
     },
     "require": {
-        "php": "^5.6 || ^7.0",
+        "php": "^5.6 || ^7.1",
         "ext-pdo_sqlite": "*",
         "symfony/symfony": "3.2.0",
         "doctrine/orm": "2.5.*",

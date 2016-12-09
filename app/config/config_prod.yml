@@ -23,4 +23,3 @@ monolog:
       type: syslog
       action_level: debug
       path: "php://stderr"
-      
