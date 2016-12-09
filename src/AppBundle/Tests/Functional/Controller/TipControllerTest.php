@@ -119,7 +119,7 @@ class TipControllerTest extends FixtureTestCase
 
         $response = self::$client->getResponse();
         $this->assertEquals(200, $response->getStatusCode());
-        $this->assertEquals('2', strpos(self::$client->getResponse()->getContent(), '\"page\":2,'));
+        $this->assertEquals('1', strpos($response->getContent(), '"page":2'));
     }
 
     /**

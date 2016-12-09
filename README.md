@@ -12,6 +12,10 @@ SYMFONY REST EXAMPLE
 $ composer install
 $ app/console server:start
 ```
+### Load Fixtures 
+```sh
+$ app/console hautelook_alice:fixtures:load --fixtures src/AppBundle/Tests/DataFixtures/ORM 
+```
 
 ### Use the Api
 ```sh
