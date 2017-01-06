@@ -93,8 +93,6 @@ class TipControllerTest extends FixtureTestCase
      */
     public function testJsonGetTipAction()
     {
-        $content = '{"day":18,"month":1,"description":"Recusandae asperiores accusamus nihil."}';
-
         self::$client->request(
             'GET',
             '/api/tips/1.json'
@@ -102,7 +100,7 @@ class TipControllerTest extends FixtureTestCase
 
         $response = self::$client->getResponse();
         $this->assertEquals(200, $response->getStatusCode());
-        $this->assertEquals($content, $response->getContent());
+        $this->assertArrayHasKey('day', json_decode($response->getContent(), true));
 
         return $response;
     }

@@ -5,7 +5,7 @@ doctrine:
   dbal:
     connections:
       sqlite:
-        path:    "%kernel.root_dir%/sqlite.db.cache"
+        path: '%kernel.root_dir%/sqlite.db.cache'
 
 framework:
   test: ~
