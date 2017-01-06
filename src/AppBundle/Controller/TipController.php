@@ -191,7 +191,7 @@ class TipController extends AbstractRestController
         $form = $this->createForm(TipType::class, $tip);
         $form->handleRequest($request);
 
-        if (true === $form->isSubmitted() and $form->isValid()) {
+        if (true === $form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($tip);
             $em->flush();
