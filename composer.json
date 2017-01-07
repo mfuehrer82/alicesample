@@ -37,7 +37,8 @@
         "heroku/heroku-buildpack-php": "*",
         "phpunit/phpunit": "5.7.2",
         "mockery/mockery": "@stable",
-        "sstalle/php7cc": "^1.1"
+        "sstalle/php7cc": "^1.1",
+        "codeclimate/php-test-reporter": "dev-master"
     },
     "scripts": {
         "warmup": [
