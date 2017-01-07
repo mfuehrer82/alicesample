@@ -1,6 +1,6 @@
 filter:
     paths: [src/*]
-    excluded_paths: [bin/*, vendor/*, tests/*]
+    excluded_paths: [bin/*, vendor/*, tests/*, src/AppBundle/Tests]
 checks:
     php:
         code_rating: true
@@ -32,4 +32,4 @@ tools:
         excluded_dirs: [vendor, tests]
 build:
     environment:
-        php: 7.0.8
+        php: 7.1
