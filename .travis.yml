@@ -20,6 +20,13 @@ script:
   - mkdir -p build/logs
   - bin/phpunit --coverage-clover build/logs/clover.xml --configuration app/phpunit.xml
 
+after_success:
+  - ./vendor/bin/test-reporter
+
 after_script:
   - wget https://scrutinizer-ci.com/ocular.phar
   - php ocular.phar code-coverage:upload --format=php-clover build/logs/clover.xml
+
+addons:
+  code_climate:
+    repo_token: d4baa07744b8725ee0d9981b9c273a4b61d18cee1b63d1c2914239267bb80df8
